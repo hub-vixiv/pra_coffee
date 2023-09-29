@@ -21,8 +21,11 @@ Base
   padding: 0;
 }
 
-body {
+html {
   scroll-behavior: smooth;
+}
+
+body {
   margin: 0 auto;
   padding: 0;
   color: black;
@@ -54,8 +57,8 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   right: 5vw;
   bottom: 5vh;
-  background: white;
-  border: solid 2px red;
+  background: rgb(109, 57, 9);
+  border: solid 2px rgb(109, 57, 9);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -66,8 +69,8 @@ h1, h2, h3, h4, h5, h6 {
 .pagetop_arrow {
   height: 3vh;
   width: 3vh;
-  border-top: 3px solid red;
-  border-right: 3px solid red;
+  border-top: 3px solid floralwhite;
+  border-right: 3px solid floralwhite;
   transform: translateY(20%) rotate(-45deg);
 }
 
@@ -91,6 +94,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1vh auto;
   color: floralwhite;
   text-shadow: 3px 3px 3px black;
+  transition: 1s;
 }
 .header nav ul {
   display: flex;
@@ -110,31 +114,6 @@ h1, h2, h3, h4, h5, h6 {
 .header nav.active {
   right: 0;
 }
-@media screen and (max-width: 767px) {
-  .header nav {
-    z-index: 9;
-    margin-right: 0;
-    position: fixed;
-    right: -100%;
-    top: 40px;
-  }
-  .header nav ul {
-    background-color: rgba(255, 250, 240, 0.878);
-    display: block;
-  }
-  .header nav ul li {
-    margin: 0 auto;
-    width: 80vw;
-    height: 15vh;
-    padding-top: 4vh;
-    border-right: none;
-    border-bottom: 1px solid black;
-    vertical-align: middle;
-  }
-  .header nav ul a {
-    width: 100%;
-  }
-}
 .header h1 {
   color: floralwhite;
   text-shadow: 10px 10px 10px rgb(88, 70, 39);
@@ -149,6 +128,7 @@ h1, h2, h3, h4, h5, h6 {
 /*ハンバーガーボタン*/
 .open_btn {
   position: relative; /*ボタン内側の基点となるためrelativeを指定*/
+  z-index: 10;
   background-color: rgb(71, 58, 13);
   color: floralwhite;
   cursor: pointer;
@@ -157,11 +137,6 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 5px;
   margin-right: 2vw;
   display: none;
-}
-@media screen and (max-width: 767px) {
-  .open_btn {
-    display: block;
-  }
 }
 
 /*ボタン内側*/
@@ -224,6 +199,9 @@ h1, h2, h3, h4, h5, h6 {
   left: 4px;
 }
 
+/*--------------------
+main
+----------------------*/
 main {
   width: 100%;
   margin-bottom: 100px;
@@ -232,11 +210,6 @@ main .wrap {
   width: 1000px;
   padding: 16px;
   margin: 0 auto;
-}
-@media screen and (max-width: 767px) {
-  main .wrap {
-    width: 100vw;
-  }
 }
 main .section_title_wrap {
   margin: 20px 0;
@@ -264,7 +237,7 @@ main .content_title {
   padding-top: 50px;
   padding-bottom: 10px;
   font-size: 2.5em;
-  border-bottom: 6px solid red;
+  border-bottom: 6px solid rgb(109, 57, 9);
   margin-bottom: 50px;
 }
 main .menu .menu_contents {
@@ -293,19 +266,6 @@ main .menu .menu_contents .menu_content dl dd {
 }
 main .menu .menu_contents > div:first-child {
   border-right: 1px solid #000;
-}
-@media screen and (max-width: 767px) {
-  main .menu .menu_contents {
-    width: 100vw;
-    flex-direction: column;
-    margin: 0 auto;
-  }
-  main .menu .menu_contents > div:first-child {
-    border: none;
-  }
-  main .menu .menu_contents .menu_content {
-    width: 100%;
-  }
 }
 main .about .about_content {
   text-align: center;
@@ -349,7 +309,7 @@ main .about .read_more::before, main .about .read_more span::before {
   top: 0;
   left: 0;
   content: "";
-  background-color: red;
+  background-color: rgb(109, 57, 9);
   transition: 0.5s ease;
 }
 main .about .read_more::after, main .about .read_more span::after {
@@ -357,7 +317,7 @@ main .about .read_more::after, main .about .read_more span::after {
   right: 0;
   bottom: 0;
   content: "";
-  background-color: red;
+  background-color: rgb(109, 57, 9);
   transition: 0.5s ease;
 }
 main .about .read_more::before, main .about .read_more::after {
@@ -378,19 +338,6 @@ main .about .read_more:hover::before, main .about .read_more:hover::after {
 main .about .read_more:hover span::before, main .about .read_more:hover span::after {
   height: 100%;
 }
-@media screen and (max-width: 767px) {
-  main .about .about_content {
-    width: 100vw;
-  }
-  main .about .about_content ul {
-    flex-direction: column;
-    margin: 0 auto;
-  }
-  main .about .about_content ul li {
-    width: 85vw;
-    margin: 0 auto;
-  }
-}
 main .location {
   text-align: center;
 }
@@ -405,12 +352,6 @@ main .location .address {
 main .location .address p {
   margin: 20px 0;
 }
-@media screen and (max-width: 767px) {
-  main .location .location {
-    width: 90vw;
-    margin: 0 auto;
-  }
-}
 
 footer {
   height: 2em;
@@ -419,4 +360,79 @@ footer .footer_copy {
   height: 2em;
   line-height: 2em;
   text-align: center;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*--------------------
+メディアクエリ
+----------------------*/
+@media screen and (max-width: 1000px) {
+  main .wrap {
+    width: 90vw;
+  }
+  main .about .about_content ul li {
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  .header h1 {
+    font-size: 48px;
+  }
+  .header nav {
+    z-index: 5;
+    margin-right: 0;
+    position: fixed;
+    right: -100%;
+    top: -15px;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(255, 250, 240, 0.878);
+    padding-top: 80px;
+  }
+  .header nav ul {
+    display: block;
+  }
+  .header nav ul li {
+    margin: 0 auto;
+    width: 80vw;
+    height: 15vh;
+    padding-top: 4vh;
+    border-right: none;
+    border-bottom: 1px solid black;
+    vertical-align: middle;
+  }
+  .header nav ul a {
+    width: 100%;
+  }
+  .open_btn {
+    display: block;
+  }
+  main .wrap {
+    width: 100vw;
+  }
+  main .menu .menu_contents {
+    width: 100vw;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  main .menu .menu_contents > div:first-child {
+    border: none;
+  }
+  main .menu .menu_contents .menu_content {
+    width: 100%;
+  }
+  main .about .about_content {
+    width: 100vw;
+  }
+  main .about .about_content ul {
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  main .about .about_content ul li {
+    width: 85vw;
+    margin: 0 auto;
+  }
+  main .location .location {
+    width: 90vw;
+    margin: 0 auto;
+  }
+}

@@ -10,13 +10,13 @@ Version 1.0.1
 Base
 ----------------------*/
 $main_color: white ; /*example nav's background-color*/
-$sub_color: red ; /*example button's background-dolor*/
+$sub_color: rgb(109, 57, 9) ; /*example button's background-dolor*/
 $font_color: black ; /*example button's font color*/
 $font_color2: floralwhite ; /*example button's point color*/
 
 $bp_m : 767px;    /* m = mobile */
 $bp_t : 768px;    /* t = tablet */
-$bp_pc: 1280px;
+$bp_pc: 1000px;
 
 /* media mixin */
 /* ＰＣファースト 指定以下に適用 */
@@ -26,7 +26,7 @@ $bp_pc: 1280px;
   }
 }
 @mixin media_m{
-  @media screen and (max-width: $bp_m){
+  @media screen and (max-width: $bp_t){
     @content;
   }
 }
@@ -37,9 +37,9 @@ $bp_pc: 1280px;
   padding: 0;
 }
 html{
+  scroll-behavior: smooth;
 }
 body{
-  scroll-behavior: smooth;
   margin: 0 auto;
   padding: 0;
   color: $font_color;
@@ -68,7 +68,7 @@ h1,h2,h3,h4,h5,h6{
     position: fixed;
     right: 5vw;
     bottom: 5vh;
-    background: $main_color;
+    background: $sub_color;
     border: solid 2px $sub_color;
     border-radius: 50%;
     display: flex;
@@ -79,8 +79,8 @@ h1,h2,h3,h4,h5,h6{
   .pagetop_arrow {
     height: 3vh;
     width: 3vh;
-    border-top: 3px solid $sub_color;
-    border-right: 3px solid $sub_color;
+    border-top: 3px solid $font_color2;
+    border-right: 3px solid $font_color2;
     transform: translateY(20%) rotate(-45deg);
   }
 
@@ -104,6 +104,8 @@ h1,h2,h3,h4,h5,h6{
     padding: 1vh auto;
     color: $font_color2;
     text-shadow: 3px 3px 3px black;
+    transition: 1s;
+
     ul{
       display: flex;
       justify-content: center;
@@ -121,31 +123,6 @@ h1,h2,h3,h4,h5,h6{
     }
     &.active{
       right: 0;
-    }
-  
-    @include media_m(){
-      z-index: 9;
-      margin-right: 0;
-      position: fixed;
-      right: -100%;
-      top: 40px;
-      // width: 100vw;
-      ul{
-        background-color: rgba(255, 250, 240, 0.878);
-        display: block;
-        li{
-          margin: 0 auto;
-          width: 80vw;
-          height: 15vh;
-          padding-top: 4vh;
-          border-right: none;
-          border-bottom: 1px solid $font_color;
-          vertical-align: middle;
-        }
-        a{
-          width: 100%;
-        }
-      }
     }
   }
 
@@ -165,6 +142,7 @@ h1,h2,h3,h4,h5,h6{
 /*ハンバーガーボタン*/
 .open_btn{
     position: relative;/*ボタン内側の基点となるためrelativeを指定*/
+    z-index: 10;
     background-color: rgb(71, 58, 13);
     color:$font_color2;
     cursor: pointer;
@@ -173,10 +151,6 @@ h1,h2,h3,h4,h5,h6{
     border-radius: 5px;
     margin-right: 2vw;
     display: none;
-
-    @include media_m(){
-      display: block;
-    }
 }
   /*ボタン内側*/
 .open_btn span{
@@ -192,7 +166,7 @@ h1,h2,h3,h4,h5,h6{
   .open_btn span:nth-of-type(1) {
     top:13px;
   }
-.open_btn span:nth-of-type(2) {
+  .open_btn span:nth-of-type(2) {
     top:19px;
   }
   .open_btn span:nth-of-type(3) {
@@ -230,9 +204,9 @@ h1,h2,h3,h4,h5,h6{
     left:4px;
   }
 
-
-
-
+/*--------------------
+main
+----------------------*/
 main{
   width: 100%;
   margin-bottom: 100px;
@@ -241,9 +215,6 @@ main{
     width: 1000px;
     padding: 16px;
     margin: 0 auto;
-    @include media_m(){
-      width: 100vw;
-    }
   }
 
   .section_title_wrap{
@@ -310,21 +281,8 @@ main{
       & > div:first-child{
         border-right: 1px solid #000;
       }
-      @include media_m(){
-        width: 100vw;
-        flex-direction: column;
-        margin: 0 auto;
-
-        & > div:first-child{
-          border: none;
-        }
-        .menu_content{
-          width: 100%;
-        }
-
-
-      }
-      }
+      
+    }
 
     }
 
@@ -406,19 +364,6 @@ main{
           }
         }
       }
-      @include media_m(){
-        .about_content{
-          width: 100vw;
-          ul{
-            flex-direction: column;
-            margin: 0 auto;
-            li{
-              width: 85vw;
-              margin: 0 auto;
-            }
-          }
-        }
-      }
   }
 
   .location{
@@ -436,12 +381,6 @@ main{
         margin: 20px 0;
       }
     }
-    @include media_m(){
-      .location{
-        width: 90vw;
-        margin: 0 auto;
-      }
-    }
   }
 }
 
@@ -454,13 +393,104 @@ footer{
     text-align: center;
   }
 }
+/*--------------------
+メディアクエリ
+----------------------*/
+@include media_tab(){
+  main{
+    .wrap{
+      width: 90vw; 
+    }
+    .about{
+      .about_content{
+        ul{
+          li{
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+  }
+}
 
-// @include media_m(){
-//   .menu_contents{
-//     display: block;
 
-//     & > div:first-child{
-//       border: none;
-//     }
-//   }
-// }
+@include media_m(){
+  .header{
+    h1{
+      font-size: 48px;
+    }
+    nav{
+      z-index: 5;
+      margin-right: 0;
+      position: fixed;
+      right: -100%;
+      top: -15px;
+      height: 100vh;
+      width: 100vw;
+      background-color: rgba(255, 250, 240, 0.878);
+      padding-top: 80px;
+
+      ul{
+        display: block;
+        li{
+          margin: 0 auto;
+          width: 80vw;
+          height: 15vh;
+          padding-top: 4vh;
+          border-right: none;
+          border-bottom: 1px solid $font_color;
+          vertical-align: middle;
+        }
+        a{
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .open_btn{
+    display: block;
+  }
+
+  main{
+    .wrap{
+      width: 100vw;
+    }
+
+    .menu{
+      .menu_contents{
+        width: 100vw;
+        flex-direction: column;
+        margin: 0 auto;
+
+        & > div:first-child{
+          border: none;
+        }
+        .menu_content{
+          width: 100%;
+        }
+      }
+    }
+
+    .about{
+      .about_content{
+        width: 100vw;
+        ul{
+          flex-direction: column;
+          margin: 0 auto;
+          li{
+            width: 85vw;
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+
+    .location{
+      .location{
+        width: 90vw;
+        margin: 0 auto;
+      }
+    }
+  }
+}
